@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nickson N.F Zebua | Cybersecurity Portfolio</title>
+    
+    <!-- Import Font: Inter untuk Teks & JetBrains Mono untuk Nuansa IT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Variabel Warna & Estetika --- */
+        :root {
+            --navy-deep: #0a192f;
+            --navy-card: #112240;
+            --white: #ffffff;
+            --off-white: #f9fafb;
+            --slate: #8892b0;
+            --text-dark: #1f2937;
+            --text-grey: #4b5563;
+            --accent: #64ffda;
+            --transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- Dasar Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 25px;
+            position: relative;
+        }
+
+        /* --- CLI Button Style --- */
+        .cli-btn {
+            display: inline-block;
+            background: transparent;
+            color: var(--navy-deep);
+            border: 2px solid var(--navy-deep);
+            padding: 14px 28px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cli-btn::before {
+            content: ">_ ";
+        }
+
+        .cli-btn:hover {
+            background: var(--navy-deep);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(10, 25, 47, 0.15);
+        }
+
+        /* Efek Active: Warna teks putih & background navy saat ditekan */
+        .cli-btn:active {
+            background-color: var(--navy-deep);
+            color: var(--white) !important;
+            transform: scale(0.95);
+            transition: 0.05s;
+        }
+
+        .cli-btn-white {
+            color: var(--white);
+            border-color: var(--white);
+        }
+        .cli-btn-white:hover {
+            background: var(--white);
+            color: var(--navy-deep);
+        }
+
+        /* --- Scroll Reveal Animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.9s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Parallax Background Decorative Text --- */
+        .parallax-bg {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12rem;
+            font-weight: 900;
+            color: rgba(10, 25, 47, 0.03);
+            pointer-events: none;
+            z-index: -1;
+            white-space: nowrap;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* --- Header Section (Navy Hero) --- */
+        header {
+            min-height: 100vh;
+            background-color: var(--navy-deep);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-major {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .hero-name {
+            font-size: clamp(40px, 8vw, 85px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero-title {
+            font-size: clamp(18px, 3vw, 32px);
+            font-weight: 400;
+            color: var(--slate);
+            max-width: 750px;
+            margin-bottom: 40px;
+        }
+
+        /* --- Global Section Styling --- */
+        section {
+            padding: 120px 0;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .section-heading {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            color: var(--navy-deep);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-heading::after {
+            content: "";
+            height: 2px;
+            flex-grow: 1;
+            background: #e5e7eb;
+            margin-left: 20px;
+        }
+
+        /* --- Experience & Skills (Navy Cards) --- */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card-navy {
+            background-color: var(--navy-deep);
+            color: var(--white);
+            padding: 50px 40px;
+            border-radius: 4px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        /* Hover Effect: Card terangkat & bersinar */
+        .card-navy:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px -12px rgba(10, 25, 47, 0.35);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card-navy h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .card-navy p {
+            color: var(--slate);
+            font-size: 1rem;
+        }
+
+        /* --- Contact Section (Center - White Background) --- */
+        #contact {
+            text-align: center;
+            padding: 150px 0;
+            background-color: var(--white);
+        }
+
+        .contact-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-box h2 {
+            font-size: clamp(32px, 6vw, 52px);
+            font-weight: 800;
+            color: var(--navy-deep);
+            margin-bottom: 20px;
+        }
+
+        .contact-box p {
+            color: var(--text-grey);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--navy-deep);
+            color: var(--slate);
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- Scroll Progress Bar --- */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--accent);
+            z-index: 10000;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 768px) {
+            header { min-height: 80vh; }
+            section { padding: 80px 0; }
+            .section-heading::after { width: 40px; }
+            .parallax-bg { display: none; } /* Matikan parallax di mobile untuk performa */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="parallax-bg" style="top: 15%; right: -5%;" id="p-text-1">SEC_OPS</div>
+        <div class="container">
+            <span class="hero-major reveal">NICKSON N.F ZEBUA | INFORMATIKA</span>
+            <h1 class="hero-name reveal">Nickson.</h1>
+            <h2 class="hero-title reveal">Satu Langkah Lebih Maju dalam Keamanan Digital.</h2>
+            <a href="#about" class="cli-btn cli-btn-white reveal">baca_profil</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="parallax-bg" style="left: -5%; top: 30%; color: rgba(0,0,0,0.02);" id="p-text-2">ABOUT</div>
+        <div class="container reveal">
+            <h2 class="section-heading">Tentang Saya</h2>
+            <div style="font-size: 1.15rem; color: var(--text-grey); text-align: justify; max-width: 900px;">
+                <p>Halo, perkenalkan nama saya <b>Nickson Zebua</b>, Mahasiswa semester 2, <b>Universitas Atma jaya Yogyakarta</b>, saya dari Fakultas Teknologi Industri, Program studi Informatika. Saat ini saya memiliki minat di bidang Cybersecurity.</p>
+                <br>
+                <p>Ketertarikan saya dibidang Cybersecurity dimulai dari saya yang gemar mengeksplorasi tools keamanan dan mengasah logika <i>Problem solving</i> yang dimana saya berfokus untuk memahami cara kerja 'Attacker' untuk membangun pertahanan yang lebih tangguh dan adaptif. Saat ini saya sedang fokus mengembangkan pemahaman mendalam tentang keamanan jaringan, etika peretasan (ethical hacking), dan perlindungan data.</p>
+                <br>
+                <p>Saya sedang menikmati proses belajar mandiri melalui berbagai platform praktikum dan mulai membangun fondasi di bidang <b>Penetration Testing</b> dan <b>Cybersecurity Analyst</b>. Saya adalah pembelajar cepat yang aktif mengeksplorasi tools keamanan terbaru untuk menghadapi tantangan keamanan digital di masa depan.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-heading reveal">Pengalaman</h2>
+            <div class="grid-layout">
+                <!-- Reveal Card 1 -->
+                <div class="card-navy reveal">
+                    <h3>Junior of Cybersecurity</h3>
+                    <p>Mendalami audit keamanan infrastruktur digital, analisis ancaman siber, dan penerapan simulasi pertahanan sistem untuk mitigasi risiko eksploitasi data.</p>
+                </div>
+                <!-- Reveal Card 2 -->
+                <div class="card-navy reveal" style="transition-delay: 0.1s;">
+                    <h3>Junior of AI Engineer</h3>
+                    <p>Integrasi algoritma pembelajaran mesin dan pemrosesan data cerdas untuk optimasi sistem teknologi yang efisien dan adaptif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-heading reveal">Keahlian Utama</h2>
+            <div class="card-navy reveal" style="width: 100%;">
+                <h3>Penetration Tester</h3>
+                <p>
+                    Saya mempunyai skill sebagai Penetration Tester di bidang Cybersecurity di mana saya bertugas mensimulasikan serangan siber secara legal dan etis (<b>Ethical Hacking</b>) pada sistem, jaringan, atau aplikasi untuk mengidentifikasi celah keamanan sebelum dieksploitasi pihak luar.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container reveal">
+            <div class="contact-box">
+                <h2>Mari Terhubung</h2>
+                <p>Terbuka untuk kolaborasi proyek, diskusi strategi keamanan siber, atau peluang profesional lainnya.</p>
+                <a href="https://instagram.com/nickson_zebz" target="_blank" class="cli-btn">instagram(@nickson_zebz)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Nickson N.F Zebua. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. Reveal Animation on Scroll ---
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        // --- 2. Parallax Effect Logic ---
+        function parallax() {
+            const p1 = document.getElementById("p-text-1");
+            const p2 = document.getElementById("p-text-2");
+            const scrollVal = window.scrollY;
+            
+            // Gerakkan teks latar belakang dengan kecepatan berbeda
+            if (p1) p1.style.transform = `translateY(${scrollVal * 0.3}px)`;
+            if (p2) p2.style.transform = `translateY(${scrollVal * -0.1}px)`;
+        }
+
+        // --- 3. Scroll Progress Bar ---
+        function updateProgress() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        }
+
+        // Jalankan saat scroll
+        window.addEventListener("scroll", () => {
+            reveal();
+            parallax();
+            updateProgress();
+        });
+
+        // Jalankan saat pertama kali dimuat
+        window.addEventListener("DOMContentLoaded", () => {
+            reveal();
+        });
+    </script>
+</body>
+</html>
